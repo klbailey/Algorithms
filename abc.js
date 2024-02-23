@@ -8,6 +8,7 @@ function twoNumbers ( x, y) {
     console.log(x + y)
     console.log(x-y)
 }
+document.getElementById("demo").innerHTML = twoNumbers(10, 2);
 
 // Create a function that accepts a number parameter and returns the sum of all of the numbers from 0 to that number. 
 // For example if given 5 return ( 0 + 1 + 2 + 3 + 4 + 5) or 15.
