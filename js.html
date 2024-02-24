@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Demo</title>
+    
+</head>
+
+<body>
+    <button id="button1">Click me</button>
+    <button id="button2">Click me 2</button>
+</body>
+<script>
+    // DOM
+        var button_one = document.getElementById('button1')
+        var button_two = document.getElementById('button2')
+        console.log(button_one)
+        console.log(button_two)
+    // event listeners
+    button_one.onclick=function(){
+        alert('Hello')
+    }
+
+    button_two.onmouseover=function(){
+        alert('Aloha')
+    }
+
+</script>
+</html>
