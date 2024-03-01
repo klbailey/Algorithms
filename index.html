@@ -83,7 +83,34 @@
         };
         console.log(popElements([1, 2, 3, 4, 5]));
 
-        
+    // Given an array of numbers create a function that returns the max value in that array.
+    // Given [2,3,1,5,4] return 5. no built in functions unless needed like .pop
+
+        function numbs(arr) {
+            // Initialize max with the first element of the array
+            let max = arr[0];
+            for (i = 1; i < arr.length; i++) {
+                if (arr[i] > max ) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        console.log(numbs([2, 3, 1, 5, 4]));
+
+    // Given an array of numbers create a function that returns the min value
+    // in that array. Given [2, 3, 1, 5, 4] return 1 no built in functions unless needed like .pop
+
+    function numbrs(arr) {
+        let min = arr[0];
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return min;
+    }
+    console.log(numbrs([2, 3, 1, 5, 4]));
 
     </script>
     
