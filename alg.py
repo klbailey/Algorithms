@@ -12,7 +12,6 @@ def greaterThanY(arr,y):
             count+= 1
     return count
 
-
 array = [1, 3, 5, 7]
 y = 3
 result = greaterThanY(array, y)
@@ -30,4 +29,19 @@ def greater_than_y(arr, y):
 
 print(greater_than_y([1, 2, 3, 4, 5, 6], 2))
 
+# skip step up 3
+string = "test this is step out"
+print(string[3:18:3])
 
+# Create a function that accepts a string of 1's and 0's and returns a count of all of the 1's in that string.
+# Example: Given 1001011 returns 4 Hint: strings are just an array of chars that can't be altered. No built-in
+# functions unless absolutely necessary
+
+def strOfOnes(str):
+    count = 0
+    for i in str:
+        if i == '1':
+            count +=1
+    print(count)
+
+strOfOnes('1001011')
