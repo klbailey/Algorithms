@@ -1,3 +1,5 @@
+# strings are Unicode in python 3.x and later versions
+
 # Greater Than Y. Create a function that accepts an array and returns the 
 # number of values in that array whose value is greater than a given value y. 
 # For example, if array = [1, 3, 5, 7] and y = 3, after your function runs your 
@@ -45,3 +47,61 @@ def strOfOnes(str):
     print(count)
 
 strOfOnes('1001011')
+
+'''Create a function that accepts a string and returns that string but reversed. Eg. string returns gnirts
+[::-1] means start at the end of the string and end at position 0, move with the step -1, negative one, 
+which means one step backwards.'''
+
+def reverseStr(str):
+    for value in str:
+        return str[::-1]
+str = reverseStr('string')
+print(str)
+
+# Given a string create a function that checks to see if a string is a palindrome. A palindrome is a 
+# word that's spelled the same forward and backwards like racecar, mom dad Hint: reference reverse string
+# algorithm. No built in functions unless absolutely needed.
+
+def isPalindrome(x):
+    if(x == x[::-1]):
+        return 'yes'
+    else:
+        return 'no'
+# x = 'mom' or:
+x = input('enter string:')
+print(isPalindrome(x))
+
+# oop
+
+class MyClass:
+	x = 10
+newObject=MyClass()
+print(newObject.x) 
+
+# Count Non-Spaces. Create a function that accepts a string and returns the number of non-space
+# characters found in the string. Eg. "lol cool dude" return 11 not 13 NO builtin functions
+
+def nonSpace(str):
+    count = 0
+    for char in str:
+        if char != ' ':
+            count += 1
+    return count
+
+str = "lol cool dude"
+result=nonSpace(str)
+print(result)
+
+# Create function accepts input string and removes all white speces from that string. Given 
+# "             whitespaces are cool           " return "whitespacesare cool" 
+
+def remove_spaces(input_string):
+    result = ''
+    for char in input_string:
+        if char != ' ':
+            result += char
+    return result
+
+input_str = "             whitespaces are cool           "
+result = remove_spaces(input_str)
+print(result)
