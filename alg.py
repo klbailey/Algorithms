@@ -105,3 +105,49 @@ def remove_spaces(input_string):
 input_str = "             whitespaces are cool           "
 result = remove_spaces(input_str)
 print(result)
+
+# Given an array w/only 2 values. Swap places of those 2 values and return the altered array.
+# Given [1, 2] return [2, 1]
+
+def swap_pairs(arr):
+    # Swap the elements
+    arr[0], arr[1] = arr[1], arr[0]
+    return arr
+
+print(swap_pairs([1, 2]))  # Output: [2, 1]
+              
+# Array swap pairs. Swap position of successive pairs of values of given array. If length is odd, do not
+# change the final element. For [1, 2, 3, 4] return [2,1,4,3]. For eg. change input ["Brendan, true, 42"]
+# to [true, "Brendan",42]. No build in array methods.
+
+def swap_things(arr):
+    # Function to swap pairs of values
+    def swap(a, b):
+        return b, a
+    # initializes loop that iterates through arr in pairs the odd element is not addressed; start index 0 
+    # to end-2nd to last thus len(arr) - 1 with a step of 2 (taking 2 at a time)
+    for i in range(0, len(arr) - 1, 2):
+        # arr[i] and arr[i+1] represents current pair of adjacent elements in array
+        # swap function swaps these two elements
+        arr[i], arr[i + 1] = swap(arr[i], arr[i + 1])
+
+    return arr
+
+print(swap_things([1, 2, 3, 4]))  # Output: [2, 1, 4, 3]
+print(swap_things(["Brendan", True, 42]))  # Output: [True, 'Brendan', 42]
+    
+# Shift array values left shiftArrayValsLeft(arr). Given an rray, move all values forward (to the left
+# by one index, dropping the first value and leaving a 0(zero) value at the end of the array.)
+# Given [1,2,3,4,5] return [2,3,4,5,0].
+
+lst = [1, 2, 3, 4, 5]
+
+def shiftArrayValsLeft(arr):
+
+  for i in range(len(arr)-1):
+    arr[i] = arr[i+1];
+  arr[len(arr)-1] = 0;
+  return arr;
+
+print(shiftArrayValsLeft(lst))
+
