@@ -82,6 +82,15 @@ print(printMaxMinAverageArrayVals([1,3,2]))
 # count and print the number of array values greater than Y. Given [1,2,3,4,5], Y = 3 return 2 (because 
 # there are 2 values in the array that are greater than 3.
 
+def returnArrayCountGreaterThanY(arr, y):
+    count = 0
+    for value in arr:
+        if value > y:
+            count+= 1
+    return count
+
+print(returnArrayCountGreaterThanY([1,2,3,4,5], 3))
+
 # Swap String for Array Negative Values swapStringForArrayNegativeVals(arr). Given an array of numbers, 
 # replace any negative values with the string 'Skillspire'.
 
