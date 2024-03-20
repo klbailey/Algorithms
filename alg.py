@@ -145,9 +145,48 @@ lst = [1, 2, 3, 4, 5]
 def shiftArrayValsLeft(arr):
 
   for i in range(len(arr)-1):
-    arr[i] = arr[i+1];
-  arr[len(arr)-1] = 0;
-  return arr;
+    arr[i] = arr[i+1]
+  arr[len(arr)-1] = 0
+  return arr
 
 print(shiftArrayValsLeft(lst))
 
+# Array: Push front given array and an additional value, create a function that inserts this value at the
+# beginning of the array. Do this without using any built-in arra methods except push(). Given [2,3,4,5],1 return
+# [1,2,3,4,5]
+
+# 1. append val that's passed in as a param into the array [2,3,4,5,1]
+# 2. Shift val from end to front so create for loop that starts at end of array and ends at beginning of array
+# and for loop will decrement by 1
+# 3. Swap 5 and 1, 4 and 1, 3 and 1 ... until 1 is at beginning of array shld look like [1,2,3,4,5]
+# 4. Return array
+# Does Thonny work on python?
+
+def arrPushFront(arr, val):
+    # #1
+    arr.append(val)
+    # #2
+    for i in range(len(arr) - 1, 0, -1):
+        #  #3
+        temp = arr[i]
+        arr[i] = arr[i-1]
+        arr[i-1] = temp
+        # first iteration would be [2,3,4,1,5]
+    return arr
+print(arrPushFront([2,3,4,5], 1))
+
+# Array: Pop Front Given array, remove and return the value at the beginning of the array. 
+# Do this without using any built-in array methods except pop(). Given [1,2,3,4,5] return 1 
+# 1. Create for loop iterate from front of array to end of array
+# 2. Inside loop swap value at current index w/value next to it
+# [1,2] after swap [2,1];swap every value until first value is at end of array then pop
+# 3. Once exit loop, pop off and return the last value in array
+
+def arrPopFront(arr):
+    # 1
+    for i in range(0, len(arr)-1):
+        temp = arr[i] # temp = 1 in first iteration
+        arr[i] = arr[i+1] #[2,2,3,4,5]
+        arr[i+1] = temp  #then [2,1,3,4,5]
+    return arr.pop()
+print(arrPopFront([1,2,3,4,5]))

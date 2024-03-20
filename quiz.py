@@ -94,14 +94,65 @@ print(returnArrayCountGreaterThanY([1,2,3,4,5], 3))
 # Swap String for Array Negative Values swapStringForArrayNegativeVals(arr). Given an array of numbers, 
 # replace any negative values with the string 'Skillspire'.
 
+def swapStringForArrayNegativeVals(arr):
+    # iterate through array
+    for i in range(len(arr)):
+    # check for negative values:
+        if arr[i] < 0:
+            arr[i] = 'Skillspire'
+    return arr
+arr = [1, -2, 3, -4, 5]
+result = swapStringForArrayNegativeVals(arr)
+print(result) 
+
 # Square Array Values squareArrayVals(arr). Square each value in a given array, returning that same array with 
 # changed values. Given [1,2,3,4,5] return [1,4,9,16,25]
+
+def squareArrayVals(arr):
+    # iterate through array
+    for i in range(len(arr)):
+        arr[i] = arr[i] ** 2
+    return arr
+arr = [1,2,3,4,5]
+result = squareArrayVals(arr)
+print(result)
 
 # Shift Array Values Left shiftArrayValsLeft(arr). Given an array, move all values forward (to the left) by one 
 # index, dropping the first value and leaving a 0 (zero) value at the end of the array. Given [1,2,3,4,5] return [2,3,4,5,0]
 
+def shiftArrayValsLeft(arr):
+    for i in range(len(arr)-1):
+        arr[i] = arr[i+1]
+    arr[len(arr)-1] = 0
+    return arr
+arr = [1,2,3,4,5]
+result = shiftArrayValsLeft(arr)
+print(result)
+
 #  Given an array with only 2 values. Swap the places of those 2 values and return the altered array. Given [1,2] return [2,1]
+def swap_pairs(arr):
+    # Swap the elements
+    arr[0], arr[1] = arr[1], arr[0]
+    return arr
+
+print(swap_pairs([1, 2]))  
 
 # Array swap pairs. Swap positions of successive pairs of values of a given array. If length is odd, do not change the 
 # final element. For [1,2,3,4], return [2,1,4,3]. For example, change input ["Brendan",true,42] to [true,"Brendan",42]. 
 # As with all array challenges, do this without using any built-in array methods.
+
+def swap_things(arr):
+    # Function to swap pairs of values
+    def swap(a, b):
+        return b, a
+    # initializes loop that iterates through arr in pairs the odd element is not addressed; start index 0 
+    # to end-2nd to last thus len(arr) - 1 with a step of 2 (taking 2 at a time)
+    for i in range(0, len(arr) - 1, 2):
+        # arr[i] and arr[i+1] represents current pair of adjacent elements in array
+        # swap function swaps these two elements
+        arr[i], arr[i + 1] = swap(arr[i], arr[i + 1])
+
+    return arr
+
+print(swap_things([1, 2, 3, 4]))  # Output: [2, 1, 4, 3]
+print(swap_things(["Brendan", True, 42]))  # Output: [True, 'Brendan', 42]
