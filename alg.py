@@ -190,3 +190,27 @@ def arrPopFront(arr):
         arr[i+1] = temp  #then [2,1,3,4,5]
     return arr.pop()
 print(arrPopFront([1,2,3,4,5]))
+
+# array min to front. Given a array of comparable values, move lowest element to array front,
+# shifting backward any elements previously ahead of it. Don't otherwise change the array order.
+# Given [4,2,1,3,5], change it to [1,4,2,3,5] and return it. 
+#  1. for loop to iterate 
+# 2. find minimum by comparing each number of two
+# 3. swap min to front
+
+def minFront(arr):
+    min_index = 0 # initialize to keep track of variable for minimu element
+    # Find the index of the minimum element in the array
+    for i in range(1, len(arr)):
+        if arr[i] < arr[min_index]:
+            min_index = i
+    # arr.pop(min_index) removes element at index min_index from array and returns it
+    # arr.insert(0,...) inserts the element returned by arr.pop(min_index) at beginning of array
+            # take element at min_index remove it from current position and put it at beginning of array
+    arr.insert(0, arr.pop(min_index))
+    return arr
+
+print(minFront([4, 2, 1, 3, 5]))  # Output: [1, 4, 2, 3, 5]
+
+
+
