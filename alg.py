@@ -120,21 +120,28 @@ print(swap_pairs([1, 2]))  # Output: [2, 1]
 # change the final element. For [1, 2, 3, 4] return [2,1,4,3]. For eg. change input ["Brendan, true, 42"]
 # to [true, "Brendan",42]. No build in array methods.
 
-def swap_things(arr):
-    # Function to swap pairs of values
-    def swap(a, b):
-        return b, a
-    # initializes loop that iterates through arr in pairs the odd element is not addressed; start index 0 
-    # to end-2nd to last thus len(arr) - 1 with a step of 2 (taking 2 at a time)
+def swap_pairs(arr):
+    # If the length of the array is odd, leave the last element unchanged
+    if len(arr) % 2 != 0:
+        last_element = arr.pop()
+    else:
+        last_element = None
+        
+    # Iterate through the array in steps of 2
     for i in range(0, len(arr) - 1, 2):
-        # arr[i] and arr[i+1] represents current pair of adjacent elements in array
-        # swap function swaps these two elements
-        arr[i], arr[i + 1] = swap(arr[i], arr[i + 1])
+        # Swap pairs of elements
+        arr[i], arr[i + 1] = arr[i + 1], arr[i]
+
+    # Append the last element back if it exists
+    if last_element is not None:
+        arr.append(last_element)
 
     return arr
 
-print(swap_things([1, 2, 3, 4]))  # Output: [2, 1, 4, 3]
-print(swap_things(["Brendan", True, 42]))  # Output: [True, 'Brendan', 42]
+# Test cases
+print(swap_pairs([1, 2, 3, 4]))  # Output: [2, 1, 4, 3]
+print(swap_pairs(["Brendan", True, 42]))  # Output: [True, 'Brendan', 42]
+
     
 # Shift array values left shiftArrayValsLeft(arr). Given an rray, move all values forward (to the left
 # by one index, dropping the first value and leaving a 0(zero) value at the end of the array.)
@@ -164,13 +171,13 @@ print(shiftArrayValsLeft(lst))
 
 def arrPushFront(arr, val):
     # #1
-    arr.append(val)
+    arr.append(val) #becomes [2,3,4,5,1]
     # #2
-    for i in range(len(arr) - 1, 0, -1):
+    for i in range(len(arr) - 1, 0, -1): #backward from right to left
         #  #3
-        temp = arr[i]
-        arr[i] = arr[i-1]
-        arr[i-1] = temp
+        temp = arr[i] # i starts at index 4 which is value 1 so temp becomes 1
+        arr[i] = arr[i-1] # starts with value at index i-1 which is 5; put 5 in index i;becomes [2,3,4,5,5]
+        arr[i-1] = temp #put 1 as arr[i-1] and it becomes [2,3,4,1,5]
         # first iteration would be [2,3,4,1,5]
     return arr
 print(arrPushFront([2,3,4,5], 1))
@@ -212,5 +219,49 @@ def minFront(arr):
 
 print(minFront([4, 2, 1, 3, 5]))  # Output: [1, 4, 2, 3, 5]
 
+# Given 2 arrays zip them together: given [1, 3, 5] [2,4] return [1,3,5,2,4] Doesn't have to be ordered.
+# No built in methods except push and pop
 
+def arrZip(arr1, arr2):
+    # initialize to storearr1 and arr2 combined elements
+    result = []
+    # iterate thru arrays
+    while arr1:
+        # take the first item from arr1 and put it at the end of the result list.
+        # len(result) current length of result list
+        # 
+        result[len(result):len(result)] = [arr1.pop(0)]
+    while arr2:
+        # take the first item from arr1 and put it at the end of the result list.
+        # takes 1 from arr1 and puts it in result
+        result[len(result):len(result)] = [arr2.pop(0)]
 
+    return result
+
+arr1 = [1,3,5]
+arr2 = [2,4]
+result=arrZip(arr1, arr2)
+print(result)
+
+# Remove shorter strings. Given string array and value (length), remove any strings shorter than length from the
+# array. Given (["you","i","ab"], 3) return ["you"]. You can use any functions that you have created. Hint
+# removeAt() or find a method that removes a vlaue from an array
+
+def abc(arr, x):
+    # string for string in arr iterates over each string in arr list
+    return [string for string in arr if len(string) >= x]
+
+arr=["you","i","ab"]
+x=3
+print(abc(arr,x))
+
+# Remove even-length strings. Build a standalone function to remove strings of even lengths from a given array.
+# For array containing ["nope!","its","Kris","starting","with","K!","(instead","of","Chris","with","C")","."],"
+#  change array to ["Nope!","its", "Chris","."]
+
+def abc(arr):
+    return [string for string in arr if len(string) % 2 != 0]
+
+arr = ["Nope!", "Its", "Kris", "starting", "with", "K!", "(instead", "of", "Chris", "with", "C)", "."]
+arr = abc(arr)
+print(arr) 
