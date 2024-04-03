@@ -256,7 +256,7 @@ x=3
 print(abc(arr,x))
 
 # Remove even-length strings. Build a standalone function to remove strings of even lengths from a given array.
-# For array containing ["nope!","its","Kris","starting","with","K!","(instead","of","Chris","with","C")","."],"
+# For array containing ["Nope!","its","Kris","starting","with","K!","(instead","of","Chris","with","C)","."],"
 #  change array to ["Nope!","its", "Chris","."]
 
 def abc(arr):
@@ -265,3 +265,122 @@ def abc(arr):
 arr = ["Nope!", "Its", "Kris", "starting", "with", "K!", "(instead", "of", "Chris", "with", "C)", "."]
 arr = abc(arr)
 print(arr) 
+
+# Given a string of words (sentence) create a function that capitalizes every word in the string. Given
+# 'hello there skillspire' return 'Hello There Skillspire'. No built in methods except the one that
+# capitalizes a character. (hint if there's a space in between 'there' and 'skillspire' is key indicator)
+
+def capitalize(str):
+    # empty but will hold string
+    capSentence = ""
+    # flag to indicate whether the next character should be capitalized
+    capNext = True
+    # iterate
+    for char in str:
+    # if current char is a space
+        if char == ' ':
+             # Set the flag to capitalize the next character
+            capNext = True
+            # add the space character to capSentence 
+            capSentence += char
+         # If the flag is set to capitalize the next character
+        elif capNext:
+            # Capitalize the current character and add it to the capitalized sentence
+            capSentence += char.upper()
+            # Reset flag to indicate that the next character should not be capitalized
+            capNext = False
+        else:
+            # Add current character to the capitalized sentence without capitalization
+            capSentence += char
+        
+         # Return the final capitalized sentence
+    return capSentence
+
+str = "hello there skillspire"
+result = capitalize(str)
+print(result)
+
+# Second option:
+def capitalizeSentence(string):
+    output = string[0].upper() #'h' will be 'H'
+    for i in range(1, len(string)):
+        output += string[i].upper()
+    else:
+        output += string[i] # no space before concatenate
+    return output
+
+str = "hello there skillspire"
+result = capitalize(str)
+print(result)
+
+
+# Create a standalone function that accepts an input string, removes leading and trailing white spaces 
+# (at beginning and end only) from teh string and capitalize the first letter of every word and return
+# that string '           whitespaces    are  cool     '
+# return 'Whitespaces Are Cool' don't use trim. Find character that's not space in beginning of string?
+
+def process_string(input_string):
+    # Remove leading and trailing spaces
+    input_string = remove_spaces(input_string)
+    # Initialize an empty string to store the final result
+    result_string = ""
+    # Flag to indicate whether the next character should be capitalized
+    capitalize_next = True  
+    # Loop through each character in the input string
+    for char in input_string:
+        if char == ' ':  # If the current character is a space
+            capitalize_next = True  # Set the flag to capitalize the next character
+            if result_string and result_string[-1] != ' ':  # Check if the previous character is not a space
+                result_string += char  # Add the space character to the result string
+        elif capitalize_next:  # If the flag is set to capitalize the next character
+            result_string += capitalize_char(char)  # Capitalize the current character
+            capitalize_next = False  # Reset the flag
+        else:
+            result_string += char.lower()  # Add the current character as lowercase
+            
+    return result_string
+
+# Function to remove leading and trailing spaces
+def remove_spaces(input_string):
+    # Initialize variables to track start and end indices of non-space characters
+    start_index = 0
+    end_index = len(input_string) - 1
+     # Find the index of the first non-space character from the beginning of the string
+    while start_index <= end_index and input_string[start_index] == ' ':
+        start_index += 1
+    # Find the index of the last non-space character from the end of the string
+    while end_index >= start_index and input_string[end_index] == ' ':
+        end_index -= 1
+    # Return the substring of the input string excluding leading and trailing spaces
+    return input_string[start_index:end_index+1]
+
+# Function to capitalize a character
+def capitalize_char(char):
+    # Check if the character is a lowercase letter
+    if 'a' <= char <= 'z':
+        # Convert the lowercase letter to uppercase using ASCII values
+        # Subtract the ASCII value of 'a' from the ASCII value of the character
+        # Add the result to the ASCII value of 'A' to get the corresponding uppercase letter
+        return chr(ord(char) - ord('a') + ord('A'))
+    # If the character is not a lowercase letter, return it unchanged
+    return char
+
+# Example usage:
+input_string = '           whitespaces    are  cool     '
+result = process_string(input_string)
+print(result)  # Output: 'Whitespaces Are Cool'
+
+# or which doesn't work?:
+def removeWhitespaces(string):
+    start = 0
+    end = len(string) - 1
+
+    while string[start] == " ":
+        start += 1
+
+    while string[end] == " ":
+        end -= 1
+
+    return capitalizeSentence(string[start:end])
+
+print(removeWhitespaces("       this is a sentence     "))
