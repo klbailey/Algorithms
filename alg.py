@@ -1,3 +1,4 @@
+import random
 # strings are Unicode in python 3.x and later versions
 
 # Greater Than Y. Create a function that accepts an array and returns the 
@@ -374,13 +375,48 @@ print(result)  # Output: 'Whitespaces Are Cool'
 def removeWhitespaces(string):
     start = 0
     end = len(string) - 1
-
     while string[start] == " ":
         start += 1
-
     while string[end] == " ":
         end -= 1
+    return capitalizeSentence(string[start:end+1])
+print(removeWhitespaces("       this is a  sentence     "))
 
-    return capitalizeSentence(string[start:end])
+# Array shuffle: create a function called shuffle(arr), to efficiently shuffle a given array's values in a random
+# order. swap? Use random number generator to come up with index that needs to be swapped. 
+# [1,2,3] => [2,1,3], [3,1,2]
+#1 Create function
+#2 Shuffle values in given array into a random order
+def shuffle(arr):
+    #  length of array, stop at 0 increment by -1 (subtract i each time it goes through loop)
+    for i in range(len(arr) - 1, 0, -1):
+        # Generate a random index between 0 and i including i
+        j = random.randint(0, i)
+        # Swap the elements at index i and j 
+        # if arr[1] is 2 (element at index 1) and arr[2] is 3 (element at index 2) 2,3 becomes 3,2
+        arr[i], arr[j] = arr[j], arr[i]
+    return arr
+arr = [1,2,3]
+print(shuffle(arr))
 
-print(removeWhitespaces("       this is a sentence     "))
+# Array: filter range. Given arr and values min and max retain only array values between min and max indexes.
+# Given [1,2,3,4,5],2,4 return [3,4,5]. No builtin functions. This doesn't have to be done in place
+# meaning you don't have to return the same array that was passed in as as parameter.
+
+def filter_range(arr, min_val, max_val):
+    # Create empty list to store filtered values
+    filtered = []
+    # Iterate indices of array +1 will include max_val index 
+    for i in range(min_val, max_val + 1):
+        # Check if index is within range of min_val and max_val 2 and 4
+        if i >= 0 and i < len(arr):
+            # Append value at index i to filtered list
+            filtered.append(arr[i])  
+    # Return the filtered list
+    return filtered
+
+# Example usage:
+arr = [1, 2, 3, 4, 5]
+min_val = 2
+max_val = 4
+print(filter_range(arr, min_val, max_val))
