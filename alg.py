@@ -375,11 +375,27 @@ print(result)  # Output: 'Whitespaces Are Cool'
 def removeWhitespaces(string):
     start = 0
     end = len(string) - 1
-    while string[start] == " ":
+    while start <= end and string[start] == " ":
         start += 1
-    while string[end] == " ":
+    while end >= start and string[end] == " ":
         end -= 1
+    if start > end:
+        return ""
     return capitalizeSentence(string[start:end+1])
+        
+def capitalizeSentence(string):
+    result = ""
+    capitalize_next = True
+    for char in string:
+        if char == ' ':
+            capitalize_next = True
+            result += char
+        elif capitalize_next:
+            result += char.upper()
+            capitalize_next = False
+        else:
+            result += char.lower()
+    return result
 print(removeWhitespaces("       this is a  sentence     "))
 
 # Array shuffle: create a function called shuffle(arr), to efficiently shuffle a given array's values in a random
