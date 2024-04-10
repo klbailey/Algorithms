@@ -436,3 +436,61 @@ arr = [1, 2, 3, 4, 5]
 min_val = 2
 max_val = 4
 print(filter_range(arr, min_val, max_val))
+
+# Missing Value. You are given an array of length N that contains in no particular order integers from 0 to N. One 
+# integer value is missing. Quickly determine and return the missing value. Given ([3,0,1]), return 2 (length is 3 and will go from 0-3)
+# because 2 is missing value in set. Only built in method to use is one that will sort the array.
+
+def missingVal(n, arr):
+    something = n*(n+0) // 2 #sum of integers from 0 to n 
+    arrSomething = sum(arr) #sum of elements in array
+    missingSomething = something - arrSomething  #calculate missing element
+    return missingSomething
+
+print(missingVal(2, [3,0,1]))
+#why is output -2?
+
+#Teachersolution:
+# 1. sort array
+# 2. for loop to iterate through array 0 to end of array
+# 3. in loop see if thare are any missing values between 0 and n (len of array)
+# 4. See if a number is missing in the sequence we can subtrat current value at arr[i] w/value that is
+# before it [0,1,3] 3-1=2. If value is > 1 then it's the value that is missin from sequence
+
+def missingValue(arr):
+    arr.sort()
+    n = len(arr)
+    if arr[0] != 0:
+        return 0
+    if arr[n-1] != n:
+        return n
+    for i in range(1, len(arr)):
+        if arr[i] - arr[i-1] > 1:
+            return arr[i-1] + 1
+    return
+
+print(missingValue([3,1,0]))
+
+# Reverse array. Given an array, create a function that returns that array but reversed. Given ([1,2,3,4,5] return [5,4,3,2,1].
+# No build in methods for this. Common in interiews.
+# 1. function to declare start and endpoint variables; start = 0, end = len(arr-1)
+# 2. create a while loop w/condition of start < end
+# 3. Inside loop swap elements arr[start] with arr[end] increment and decrement start and end
+# 4. Return arr
+
+def reverseArr(arr):
+    start = 0
+    end = len(arr)-1
+
+    while start < end:
+        #swap
+        temp = arr[start]
+        arr[start] = arr[end]
+        arr[end] = temp
+        #increment/decrement
+        start += 1
+        end -=1
+    return arr
+
+print(reverseArr([1,2,3,4,5]))
+
