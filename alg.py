@@ -494,3 +494,63 @@ def reverseArr(arr):
 
 print(reverseArr([1,2,3,4,5]))
 
+# Book index. Given an array of numbers (book page numbers) return a string
+# containing the same numbers in sequential order. If the numbers are in
+# consecutive add a dash between the first number in the sequence and the
+# last number in the sequence. Given [1,13,14,15,16,37,38,39,70] =>
+# "1,13-16,37-39,70"
+
+# Define a function named format_book_index that takes a list of page numbers as input
+def format_book_index(page_numbers):
+    # Check if the input list is empty
+    if not page_numbers:
+        # If the input list is empty, return an empty string
+        return ""
+
+    # Initialize an empty string to store the formatted index
+    formatted_index = ""
+    # Initialize the start of the sequence as the first element of the page numbers
+    start = page_numbers[0]
+    # Initialize the end of the sequence as the start
+    end = start
+
+    # Iterate through the page numbers starting from the second element
+    for num in page_numbers[1:]:
+        # If the current number is one more than the previous number, it's part of the sequence
+        if num == end + 1:
+            # Update the end of the sequence to the current number
+            end = num
+        # If the current number is not consecutive to the previous number
+        else:
+            # If the sequence contains only one number
+            if start == end:
+                # Add the single number to the formatted index with a comma
+                formatted_index += f"{start},"
+            # If the sequence contains multiple numbers
+            else:
+                # Add the sequence to the formatted index with a dash and a comma
+                formatted_index += f"{start}-{end},"
+            # Start a new sequence with the current number
+            start = num
+            # Set the end of the new sequence as the current number
+            end = num
+
+    # Add the last sequence
+    # If the last sequence contains only one number
+    if start == end:
+        # Add the single number to the formatted index
+        formatted_index += f"{start}"
+    # If the last sequence contains multiple numbers
+    else:
+        # Add the last sequence to the formatted index with a dash
+        formatted_index += f"{start}-{end}"
+
+    # Return the formatted index as a string
+    return formatted_index
+
+# Define an example list of page numbers
+page_numbers = [1, 13, 14, 15, 16, 37, 38, 39, 70]
+# Call the format_book_index function with the example list
+formatted_index = format_book_index(page_numbers)
+# Print the formatted index
+print(formatted_index)
