@@ -36,3 +36,34 @@ def book_index(arr):
 
 
 print(book_index([1,2,3,13,14,15,16,37,38,39,70]))
+
+'''
+Write a function that accepts as a parameter a string containing someone’s name. Return a 
+string containing the following oh-so-cool greeting: strip off the first letter of the name, 
+capitalize this new word, and add " to the [first letter]!" Given "Dylan", return "Ylan to the D!"​
+'''
+def cool_greeting(name):
+    new_name = name[1:].capitalize()
+    return f"{new_name} to the {name[0]}!"
+
+name = "Dylan"
+print(cool_greeting(name))  # Output: Ylan to the D!
+
+'''
+Acronyms. Create a function that, given a string, returns the string’s acronym (first letters only, 
+capitalized). Given "there's no free lunch gotta pay yer way", return "TNFLGPYW". Given "Live from 
+New York it's Saturday Night", return "LFNYISN".
+'''
+def acronym(string):
+    words = string.split()
+    acr = ""
+    for word in words:
+        acr += word[0].upper()
+    return acr
+
+string1 = "there's no free lunch gotta pay yer way"
+string2 = "Live from New York it's Saturday Night"
+
+print(acronym(string1))  # Output: TNFLGPYW
+print(acronym(string2))  # Output: LFNYISN
+
