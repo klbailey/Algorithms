@@ -67,3 +67,48 @@ string2 = "Live from New York it's Saturday Night"
 print(acronym(string1))  # Output: TNFLGPYW
 print(acronym(string2))  # Output: LFNYISN
 
+'''Write a function that accepts as a parameter a string containing someone’s name. Return a string containing
+the following oh-so-cool greeting: strip off the first letter of the name, capitalize this new word, and add
+" to the [first letter]!" Given "Dylan", return "Ylan to the D!"​'''
+
+#1. Create a function with the correct parameters
+#2. Create a variable for the output string. Assign the string to string[1].upper()
+#3. Create a for loop that interates through the string and copies the rest of the characters
+#in the name
+#4. Hard code the rest of the string by adding "to the string[0]!"
+#5 Return output string
+
+def coolGreeting(string):
+    output = string[1].upper()
+
+    for i in range(2, len(string)):
+        output += string[i]
+
+    return output + f" to the {string[0]}!"
+
+print(coolGreeting("Tom"))
+
+'''Acronyms. Create a function that, given a string, returns the string’s acronym (first letters only, capitalized).
+Given "there's no free lunch gotta pay yer way", return "TNFLGPYW". Given "Live from New York it's Saturday Night",
+return "LFNYISN".'''
+
+#1. Create the function and pass the correct arguments
+#2. Create an output string add and capitalize the first character of the input
+#string  output = string[0].upper()
+#3. Iterate through the string using a for loop. Start at index 1
+#4. inside of the for loop, check to see if the character before the current character is a space
+#if it is a space then that indicates that the current character is the start of a new word
+#5. Captialize current character and add to the output string.
+#6. return output string
+
+def acronym(string):
+    output = string[0].upper()
+
+    for i in range(1,len(string)):
+        if string[i-1] == " ":
+            output += string[i].upper()
+
+
+    return output
+
+print(acronym("there's no free lunch gotta pay yer way"))
