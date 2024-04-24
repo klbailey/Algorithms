@@ -112,3 +112,51 @@ def acronym(string):
     return output
 
 print(acronym("there's no free lunch gotta pay yer way"))
+
+'''
+Array: Remove Duplicates. Remove array duplicates. Do not alter original. 
+Return new array with results ‘stable’ (original order). For [1,2,1,3,4,2,1] return [1,2,3,4].​
+'''
+def remove_duplicates(arr):
+    seen = {}
+    result = []
+    for item in arr:
+        if item not in seen:
+            seen[item] = True
+            result.append(item)
+    return result
+
+# Test the function
+arr = [1, 2, 1, 3, 4, 2, 1]
+result = remove_duplicates(arr)
+print(result)  # Output: [1, 2, 3, 4]
+
+'''
+Parens Valid. Create a function that, given an input string str, 
+returns a boolean whether the parentheses in str are valid. Valid sets of parentheses 
+always open before they close, for example. For "(()())", return true. Given "(()", 
+return false: not every parenthesis is closed. Given "())(", return false, because the 
+underlined ")" is premature: there is nothing open for it to close.
+'''
+
+def is_valid_parentheses(s):
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping.keys():
+            if stack == [] or mapping[char] != stack.pop():
+                return False
+        else:
+            return False
+
+    return stack == []
+
+# Test cases
+print(is_valid_parentheses("(()())"))  # Output: True
+print(is_valid_parentheses("(()"))      # Output: False
+print(is_valid_parentheses("())("))      # Output: False
+
+
