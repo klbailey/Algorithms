@@ -118,7 +118,9 @@ Array: Remove Duplicates. Remove array duplicates. Do not alter original.
 Return new array with results ‘stable’ (original order). For [1,2,1,3,4,2,1] return [1,2,3,4].​
 '''
 def remove_duplicates(arr):
+    # Blank dictionary
     seen = {}
+    # blank list
     result = []
     for item in arr:
         if item not in seen:
@@ -126,10 +128,32 @@ def remove_duplicates(arr):
             result.append(item)
     return result
 
-# Test the function
 arr = [1, 2, 1, 3, 4, 2, 1]
 result = remove_duplicates(arr)
-print(result)  # Output: [1, 2, 3, 4]
+print(result) 
+
+'''
+or
+1. Create a function with the correct params
+2. Create a variable that stores an empty array
+3. Create a for loop to iterate through array
+4. Inside for loop check if value exists in output array
+5. If value doesn't exist appned that value into the output array
+6. Return output array
+Didn't work for me:
+'''
+# def removeDupes(arr):
+#     output = []
+
+#     for val in arr:
+#         if val in arr: 
+#             output.append(val)
+#     return output
+
+# arr = [1, 2, 1, 3, 4, 2, 1]
+# output = removeDupes(arr)
+# print(output) 
+
 
 '''
 Parens Valid. Create a function that, given an input string str, 
@@ -154,9 +178,154 @@ def is_valid_parentheses(s):
 
     return stack == []
 
-# Test cases
 print(is_valid_parentheses("(()())"))  # Output: True
 print(is_valid_parentheses("(()"))      # Output: False
 print(is_valid_parentheses("())("))      # Output: False
 
 
+'''
+or
+1. Create function and pass in corret params
+2. Create variable and assign it to an empty list
+3. Iterate through our strong of parenthesis
+4. If the value at current index is an opening parenthesis push to output lsit
+5. If value is closing parentheses pop off the last val in  list
+6. Return if output list is empty or not
+'''
+def parensValid(string):
+    output = []
+
+    for val in string: 
+        if(val == "("):
+            output.append("(")
+        else:
+            output.pop()
+
+
+    return len(output) == 0
+
+print(parensValid("(()())"))
+print(parensValid("(()"))
+
+'''Big O Notation-describes how fast a computer runs. O(1) Constant Time Complexity (no loops):
+def accessElement(arr):
+    arr.pop()
+    returnarr[0]
+    
+O(N) Linear Time Complexity-execution time increases linearly with size of input data:
+(one loop usually)
+def arrPushFront(arr,val):
+    arr.append(val)
+    for i in range(len(arr) -1, 01, -1):
+        temp = arr[i]
+        arr[i] = arr[i-1]
+        arr[i=1] = temp
+    return array
+    
+O(Nsquared) - example: nested loop for each element
+def acccess(arr):
+    for i in range(len(arr))
+        print(i)
+        for j in range(len(arr)):
+            print(j)
+    return arr
+    
+Array: Flatten a given array, eliminating nested & empty arrays. 
+Don't alter; return a new one retaining order For [1,[2,3],4[]] 
+return [1,2,3,4]'''
+
+def flatten_array(arr):
+    flattened = []
+    for item in arr:
+        # True if specified object is of specified type 
+        # Is current item a list
+        if isinstance(item, list):
+            # if current item is a list recursively calls flatten_array
+            # extend adds all elements of flattened list to flattened []
+            flattened.extend(flatten_array(item))
+            # if not a list if it's not 'None'
+        elif item is not None:
+            #append to flattened []
+            flattened.append(item)
+    return flattened
+
+input_array = [1, [2, 3], 4, []]
+output_array = flatten_array(input_array)
+print(output_array) 
+
+#instructor solution:
+
+# def arrFlat(arr):
+#     output = []
+#     for val in arr:
+#         if type(val) == list:
+#             for num in val:
+#                 output.append(num)
+#         else:
+#             output.append(val)
+
+# print(arrFlat([1, [2, 3], 4, []]))
+    
+'''Array: mode. Create a function that given an array returns most frequent
+value in array Given [1,2,2,3,4,5] return 2. Hint: use dictionary
+    '''
+
+def find_mode(arr):
+    # Dictionary store the frequency each element
+    freq_dict = {}
+    
+    # Iterate &  count the occurrences each element
+    for num in arr:
+        # is num in dictionary
+        if num in freq_dict:
+            # counts one more occurrence of the num element
+            freq_dict[num] += 1
+            # if num not already a key in {}
+        else:
+            # element num  as the key and assigns its value to 1 encountered once
+            freq_dict[num] = 1
+    
+    
+    # calculates the maximum frequency (count) of any element in the freq_dict dictionary
+    # freq_dict.values() retrieves all the values(frequencies) from dictionary; ea
+    # value represents count of occurrences of a specific element in input array 
+    max_freq = max(freq_dict.values())
+    ''' freq_dict.items(): retrieves key-value pairs from  freq_dict dictionary, where each key is an element from
+    input array & each value is its corresponding frequency. for key, value in freq_dict.items(): 
+    This iterates over each key-value pair in freq_dict. if value == max_freq: This conditional 
+    statement checks if current frequency (value) is equal to  maximum frequency (max_freq). key: 
+    This is  key (element) from the dictionary, representing an element from input array. [key for key,
+    value in freq_dict.items() if value == max_freq]: This is a list comprehension that creates a list 
+    of keys for which the corresponding value (frequency) is equal to max_freq. In other words, it 
+    collects all the elements that have the maximum frequency. max_freq will contain maximum frequency 
+    found in the input array. mode will contain a list of all elements (keys) from input array that 
+    have the maximum frequency. These are the mode(s) of the array, i.e., 
+    the element(s) that appear most frequently.
+    '''
+    mode = [key for key, value in freq_dict.items() if value == max_freq]
+    
+    return mode
+
+
+arr = [1, 2, 2, 3, 4, 5]
+result = find_mode(arr)
+print("Mode:", result)
+
+# Instructor solution: key is '2' val is 1 and when second 2 key is 2 val is 2
+
+def modem(arr):
+    tracker = {}
+    for val in arr:
+        if val in tracker:
+            tracker[val] = tracker[val] + 1
+        else:
+            tracker[val] = 1
+    maxOccurance = -1
+    maxKey = arr[0]
+    for key in tracker:
+        if tracker[key] > maxOccurance:
+            maxKey = key
+            maxOccurance = tracker[key]
+    return maxKey
+
+print(modem([1, 2, 2, 3, 4, 5]))
