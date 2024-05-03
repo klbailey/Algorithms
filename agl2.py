@@ -13,16 +13,30 @@
 # 6. If current index is > current index variable  add a dash and the last number in range
 # 7. Return the range of strings
 
+'''First Run:
+
+    While loop condition: 0 + 1 < len(arr) and arr[1] == arr[0] + 1
+        Since arr is [1, 13, 14]:
+            0 + 1 < len(arr) becomes 1 < 3
+            arr[1] == arr[0] + 1 becomes 13 == 1 + 1, which is False.
+    Since the condition is False, the loop terminates without incrementing i.
+    i remains 0.
+    currentIndex remains 0.
+    No range is formed (i didn't change), so "1" is appended to pages.
+    Since i + 1 is still less than len(arr), a comma is appended to pages.
+    i is incremented by 1.
+    pages after the first run: "1"'''
+
 def book_index(arr):
     pages = ""
 
     i = 0
     while i  < len(arr):
-        pages += str(arr[i])
-        currentIndex = i
-
+        pages += str(arr[i]) #1 goes to pages
+        currentIndex = i # stores 0 the current index 
+        # first run 
         while i + 1 < len(arr) and arr[i+1] == arr[i] + 1:
-            i+=1
+            i+=1 #increment by 1 because 13 is [1] and 13 == 1+1
 
         if i > currentIndex:
             pages += f"-{arr[i]}"
@@ -35,7 +49,9 @@ def book_index(arr):
     return pages
 
 
-print(book_index([1,2,3,13,14,15,16,37,38,39,70]))
+print(book_index([1,13,14,15,16,37,38,39,70]))
+
+#
 
 '''
 Write a function that accepts as a parameter a string containing someone’s name. Return a 
@@ -329,3 +345,75 @@ def modem(arr):
     return maxKey
 
 print(modem([1, 2, 2, 3, 4, 5]))
+
+'''
+Given 2 arrays that are sorted but not necessarily the same length, find the median value.
+Given ([1,5,9],[1,2,3,4,5,6]) return 4. If the number of values is even, return the average
+of the two middle values. Given ([1,5,9],[1,2,3,4,5]) return 3.5
+'''
+def findMedianSortedArrays(nums1, nums2):
+    # Calculate the total length of the merged array
+    total_length = len(nums1) + len(nums2) # 8
+    
+    # Initialize an empty list to store the merged array
+    merged = []
+    
+    # Initialize pointers for both arrays
+    i = j = 0
+
+    # Merge the arrays while both pointers are within their respective arrays
+    while i < len(nums1) and j < len(nums2):
+        # Compare elements at current positions in both arrays
+        # Append the smaller element to the merged array
+        if nums1[i] <= nums2[j]: # 3 < 5
+            merged.append(nums1[i]) #1, 5, 9 go into merged[]
+            i += 1 # go through 1, 5, 9
+        else: # if nums2 <= nums1
+            merged.append(nums2[j]) #1,2,3,4,5 go into merged[]
+            j += 1 # go through 1,2,3,4,5
+
+    # If any elements are remaining in the first array, append them to the merged array
+    merged.extend(nums1[i:]) # none in this example
+    
+    # If any elements are remaining in the second array, append them to the merged array
+    merged.extend(nums2[j:]) # put 1,2,3,4,5 in merged[] after 1,5,9 so its 1,5,9,1,2,3,4,5
+
+    # Check if the total number of elements in the merged array is even
+    if total_length % 2 == 0: # it is because 8 
+        # If even, calculate the median as the average of the two middle elements
+        mid = total_length // 2 # 8 / 2 = 4
+        return (merged[mid - 1] + merged[mid]) / 2 # 4-1=3 + 4 = 7 / 2 = 3.5
+    else:
+        # If odd, return the middle element as the median
+        return merged[total_length // 2] 
+
+result2 = findMedianSortedArrays([1,5,9], [1,2,3,4,5])
+print(result2)  
+
+
+'''
+Create a function that, given a string of words (with spaces), returns a new string with words
+in reverse sequence. Given "This is a test", return "test a is This".Hint: Look up string.split()​
+
+You may use helper functions like .concat(), split(), and join() 
+'''
+
+def reverse_words(sentence):
+    # Split the sentence into a list of words
+    words = sentence.split() #'This' 'is' 'a' 'test'
+    
+    # Reverse the order of the words; :: slice entire list -1 iterate(step) over list in reverse order 
+    reversed_words = words[::-1] # 'test', 'a', 'is', 'This'
+    
+    # Join the words back into a single string with spaces (space separator)
+    # ['test', 'a', 'is', 'This'] becomes 'test a is This'
+    reversed_sentence = ' '.join(reversed_words)
+    
+    return reversed_sentence
+
+original_sentence = "This is a test"
+reversed_sentence = reverse_words(original_sentence)
+print(reversed_sentence)  
+
+
+
