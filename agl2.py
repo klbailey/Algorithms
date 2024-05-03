@@ -390,6 +390,17 @@ def findMedianSortedArrays(nums1, nums2):
 result2 = findMedianSortedArrays([1,5,9], [1,2,3,4,5])
 print(result2)  
 
+'''Instructor solution:'''
+
+def findMedian(arr1,arr2):
+    combinedArr = sorted( arr1 + arr2 ) #Combine and sort arrays
+
+    middleIndex = round(len(combinedArr)/2)
+
+    if len(combinedArr) %  2 == 0:
+        return (combinedArr[middleIndex] + combinedArr[middleIndex - 1]) / 2
+
+    return combinedArr[middleIndex]
 
 '''
 Create a function that, given a string of words (with spaces), returns a new string with words
@@ -399,7 +410,7 @@ You may use helper functions like .concat(), split(), and join()
 '''
 
 def reverse_words(sentence):
-    # Split the sentence into a list of words
+    # Split the sentence into a list of words in array
     words = sentence.split() #'This' 'is' 'a' 'test'
     
     # Reverse the order of the words; :: slice entire list -1 iterate(step) over list in reverse order 
@@ -415,5 +426,14 @@ original_sentence = "This is a test"
 reversed_sentence = reverse_words(original_sentence)
 print(reversed_sentence)  
 
+'''Instructor solution:'''
+
+def reverseSentence(string):
+    wordArr = string.split() #Split string ["This","is","a","test"]
+    wordArr = tuple(reversed(wordArr)) #("test", "a", "is","This")
+
+    return " ".join(wordArr)
+
+print(reverseSentence("This is a test"))
 
 
