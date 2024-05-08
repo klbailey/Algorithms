@@ -1,6 +1,6 @@
 '''Intermediate Sums You will be given an array of numbes. After every tenth element, add
 an additional element containing the sum of those 10 values. If the array doesn't end aligned 
-venly w/10 elements, add 1 last sum that includes those last elements not yet been included
+evenly w/10 elements, add 1 last sum that includes those last elements not yet been included
 in one of the earlier sums.  
 Given the array [1,2,1,2,1,2,1,2,1,2,1,2,1,2], 
 change it to [1,2,1,2,1,2,1,2,1,2,15,1,2,1,2,6].
@@ -29,3 +29,28 @@ for i in range(len(sums)): #loop over indices of sums list that contains interme
     arr.insert(index, sums[i]) #inserts current intermediate sum sums[i] into orig arr at calc index
 
 print(arr)
+
+'''Instructor solution:'''
+
+def intermediateSums(arr):
+    count = 10
+    sum_val = 0
+    i = 0
+
+    while i < len(arr):
+        if count == 0:
+            arr.insert(i, sum_val)
+            count = 10
+            sum_val = 0
+        else:
+            sum_val += arr[i]
+            count -= 1
+
+        i+=1
+
+    if count >= 0:
+        arr.append(sum_val)
+
+    return arr
+
+print(intermediateSums([1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2]))
