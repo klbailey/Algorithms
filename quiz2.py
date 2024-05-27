@@ -4,6 +4,22 @@
 values in random order. Hint: Remember the swap method? Use a random number generator to come up 
 index that needs to be swapped. [1,2,3] => [2,1,3], [3,1,2]​'''
 
+import random
+
+def shuffle(arr):
+    n = len(arr)
+    for i in range(n):
+        # Generate a random index to swap with
+        j = random.randint(i, n - 1)
+        # Swap the current element with the randomly chosen element
+        arr[i], arr[j] = arr[j], arr[i]
+    return arr
+
+# Example usage:
+original_array = [1, 2, 3]
+shuffled_array = shuffle(original_array)
+print(shuffled_array)
+
 
 
 ''' Array: Filter Range. Given arr and values min and max, retain only the array values between 
