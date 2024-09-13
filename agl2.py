@@ -28,7 +28,7 @@
     pages after the first run: "1"'''
 
 def book_index(arr):
-    pages = ""
+    pages = "" # 1 and , go in after 1st run then 13
 
     i = 0
     while i  < len(arr):
@@ -36,11 +36,17 @@ def book_index(arr):
         currentIndex = i # stores 0 the current index 
         # first run 
         while i + 1 < len(arr) and arr[i+1] == arr[i] + 1:
+        # While loop condition: 0 + 1 < len(arr) and arr[1] == arr[0] + 1
             i+=1 #increment by 1 because 13 is [1] and 13 == 1+1
+            # arr[1] == arr[0] + 1 becomes 13 == 1 + 1, which is False.
+            '''Since the condition is False, the loop terminates without incrementing i.
+    i remains 0. currentIndex remains 0. No range is formed (i didn't change), so "1" is appended to pages'''
 
         if i > currentIndex:
-            pages += f"-{arr[i]}"
+            pages += f"-{arr[i]}" # puts in -16
 
+        # Since i + 1 is still less than len(arr), a comma is appended to pages.
+        # i is incremented by 1.
         if i + 1 < len(arr):
             pages += ","
 
