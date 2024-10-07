@@ -500,7 +500,7 @@ print(reverseArr([1,2,3,4,5]))
 # last number in the sequence. Given [1,13,14,15,16,37,38,39,70] =>
 # "1,13-16,37-39,70"
 
-# Define a function named format_book_index that takes a list of page numbers as input
+
 def format_book_index(page_numbers):
     # Check if the input list is empty
     if not page_numbers:
@@ -554,3 +554,4 @@ page_numbers = [1, 13, 14, 15, 16, 37, 38, 39, 70]
 formatted_index = format_book_index(page_numbers)
 # Print the formatted index
 print(formatted_index)
+
